@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Get User Media - Photo</title>
+</head>
+<body>
+
+<div id="container">
+
+<div class="main">
+
+		    <div class="button-panel">
+		        <button class="backbutton" 
+		        style="margin-top: 2%;
+			    display: block;
+			    background: #27adf1;
+			    color: white;
+			    border: none;
+			    width: 180px;
+			    height: 50px;"
+		        onclick="window.location.href='index.html'">Back to Menu</button>
+		    </div>
+
+</div>
+
+<button id="take">Take a photo</button><br />
+<video id="v"></video>
+<canvas id="canvas" style="display:none;"></canvas>
+<img src="images/person-placeholder.jpg" id="photo" alt="photo">
+
+</div>
+<script>
+    ;(function(){
+        function userMedia(){
+            return navigator.getUserMedia = navigator.getUserMedia ||
+            navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia ||
+            navigator.msGetUserMedia || null;
+
+        }
+
+
+        // Now we can use it
+        if( userMedia() ){
+            var videoPlaying = false;
+            var constraints = {
+            	video: true,
+			    audio: false,
+			    video: {
+			        width: 100,
+			        height: 100
+			    }
+			};
+
+            var video = document.getElementById('v');
+
+            var media = navigator.getUserMedia(constraints, function(stream){
+
+                // URL Object is different in WebKit
+                var url = window.URL || window.webkitURL;
+
+                // create the url and set the source of the video element
+                video.src = url ? url.createObjectURL(stream) : stream;
+
+                // Start the video
+                video.play();
+                videoPlaying  = true;
+            }, function(error){
+                console.log("ERROR");
+                console.log(error);
+            });
+
+
+            // Listen for user click on the "take a photo" button
+            document.getElementById('take').addEventListener('click', function(){
+                if (videoPlaying){
+                    var canvas = document.getElementById('canvas');
+                    canvas.width = 200;
+                    canvas.height = 200;
+                    canvas.getContext('2d').drawImage(video, 0, 0);
+                    var data = canvas.toDataURL('images/webp');
+                    document.getElementById('photo').setAttribute('src', data);
+                }
+            }, false);
+
+
+
+        } else {
+            console.log("KO");
+        }
+    })();
+</script>
+</body>
+</html>

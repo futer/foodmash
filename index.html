@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html >
+  
+ 	<head>
+
+    <meta charset="UTF-8">
+    <title>FoodMash</title>
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   	<link href="css/style.css" rel="stylesheet">
+   	<script src="//connect.facebook.net/en_US/all.js"></script>
+   	<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+
+  </head>
+
+  <body>
+
+  	<div id="container" style="background-image: url('images/mainBackground.jpg');">
+
+		<div class='square-box'>
+
+		    <div class='square-content'>
+		    	<div>
+		    		<span>FoodMash</span>
+		    	</div>
+		    </div>
+
+		</div>
+
+		<div id="status">
+				<button class="buttonlogin" id="loginfb" onclick="Login()">Login as Facebook</button>	        
+		</div>
+
+		<div class="main">
+		    <div class="button-panel">	
+		        <button class="button" id="buttonshow1" style="display: none;" onclick="window.location.href='main.html'">Like/Dislike photo</button>
+		        <button class="button2" id="buttonshow2" style="display: none;" onclick="window.location.href='takePhoto.html'">Make a photo</button>
+		    </div>
+		</div>
+
+	</div>
+    
+
+    <script>
+			  window.fbAsyncInit = function() {
+			    FB.init({
+			      appId      : '1553894278250974', // App ID
+			      status     : true, // check login status
+			      cookie     : true, // enable cookies to allow the server to access the session
+			      xfbml      : true  // parse XFBML
+			    });
+			 
+			    };
+			 
+			    function Login()
+			    {
+			 
+			        FB.login(function(response) {
+			           	if (response.authResponse) 
+			           	{
+			                getUserInfo();
+			                document.getElementById("loginfb").style.display = "none";
+			                document.getElementById("status").style.height = "250px";
+			                document.getElementById("status").style.padding = "10px";
+			               	document.getElementById("status").style.visibility = "block";
+			               	document.getElementById("buttonshow1").style.display = "block";
+			               	document.getElementById("buttonshow2").style.display = "block";
+			            } else {
+			             console.log('User cancelled login or did not fully authorize.');
+			            }
+			         },{scope: 'email,user_photos,user_videos'});
+			 
+			    }
+			 
+			  function getUserInfo() {
+			        FB.api('/me', function(response) {
+			 
+			      var str = "<center>Welcome</center>" + "</br>";
+			      	  str +="<center>"+response.name+ "</center>" + "<br>";
+			          document.getElementById("status").innerHTML=str;
+
+			        FB.api('/me/picture?type=normal', function(response) {
+			          var str="<center>" + "<img src='"+response.data.url+"'/>" + "</center>";
+			          document.getElementById("status").innerHTML+=str;
+			   		});
+
+			 
+			    });
+			    }
+
+			 
+			  // Load the SDK asynchronously
+			  (function(d){
+			     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+			     if (d.getElementById(id)) {return;}
+			     js = d.createElement('script'); js.id = id; js.async = true;
+			     js.src = "//connect.facebook.net/en_US/all.js";
+			     ref.parentNode.insertBefore(js, ref);
+			   }(document));
+			 
+			</script>
+
+  </body>
+</html>

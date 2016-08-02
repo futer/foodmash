@@ -1,0 +1,263 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,600);
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+body {
+    margin-top: -22px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+#container {
+  width: 360px;
+  height: 640px;
+  background-color: #ff5a5a;
+}
+
+#food, .foodChoose {
+  width: 250px;
+  height: 265px;
+}
+
+#food {
+  padding-top: 50px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.foodChoose {
+  position: absolute;
+  background-color: transparent;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  transition: all .1s linear;
+}
+.foodChoose:nth-child(1) {
+  z-index: 5;
+}
+.foodChoose:nth-child(2) {
+  z-index: 4;
+  top: 7px;
+  transform: scale(0.98);
+}
+.foodChoose:nth-child(3) {
+  z-index: 3;
+  top: 14px;
+  transform: scale(0.96);
+}
+.foodChoose:nth-child(n+4) {
+  z-index: 2;
+  transform: scale(0.7);
+}
+.foodChoose:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  content: '';
+}
+
+.foodChoose img {
+  width: 125%;
+  background: white;
+}
+
+.foodChoose span {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: white;
+  width: 100%;
+  padding: 10px;
+  font: 16px "Open Sans";
+  line-height: 30px;
+  color: #555;
+}
+
+.foodChoose span strong {
+  font-weight: 600;
+  color: #000;
+}
+
+@keyframes yes {
+  0% {
+    transform: scale(1) rotateZ(0deg);
+    left: 0;
+  }
+  30% {
+    transform: scale(1.05) rotateZ(0deg);
+    left: 0;
+  }
+  100% {
+    transform: rotateZ(45deg);
+    left: 400px;
+  }
+}
+.animateYes {
+  animation-fill-mode: both;
+  animation: yes 0.6s linear;
+}
+
+@keyframes no {
+  0% {
+    transform: rotateZ(360deg);
+    right: 0;
+  }
+  30% {
+    transform: scale(1.05) rotateZ(360deg);
+    right: 0;
+  }
+  100% {
+    transform: rotateZ(315deg);
+    right: 400px;
+  }
+}
+.animateNo {
+  animation-fill-mode: both;
+  animation: no 0.6s linear;
+}
+
+#control {
+  position: relative;
+  margin: 0 auto;
+  width: 250px;
+  top: -55%;
+}
+#control .button {
+  width: 65px;
+  height: 65px;
+  background: #fff;
+  position: absolute;
+  top: 5px;
+  border-radius: 50%;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+#control .button .trigger:active {
+  transform: translateY(-50%) scale(0.75);
+  transition: all .05s linear;
+}
+#control .button .trigger:before { 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  font-family: 'FontAwesome';
+}
+#control .no {
+  left: 38px;
+}
+#control .no .trigger:before {
+  content: "\2639";
+  font-size: 40px;
+  color: #c33;
+}
+#control .yes {
+  right: 38px;
+}
+#control .yes .trigger:before {
+  content: "\263A";
+  font-size: 40px;
+  color: #3b7;
+}
+
+.square-box{
+    margin: 0 auto;
+    position: relative;
+    width: 60%;
+    height: 15%;
+    overflow: hidden;
+    background: #4679BD;
+    top: 50px;
+}
+.square-box:before{
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+.square-content{
+    position:  absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    color: white;
+}
+.square-content div {
+   display: table;
+   width: 100%;
+   height: 100%;
+}
+.square-content span {
+    display: table-cell;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    font-family: 'Lato', sans-serif;
+}
+
+.button-panel
+{    
+    display: table;
+    margin: 0 auto;
+    width: 60%;
+    
+}
+
+.buttonlogin{
+    margin-top: 30%;
+    display: block;
+    background: #27adf1;
+    color: white;
+    border: none;
+    width: 100%;
+    height: 50px;
+}
+
+.button {
+    margin-top: 40%;
+    background: #27adf1;
+    color: white;
+    border: none;
+    width: 100%;
+    height: 50px;
+}
+
+
+.button2 {
+    margin-top: .25em;
+    border: 1px solid #27adf1;
+    color: #27adf1;
+    background: white;
+    width: 100%;
+    height: 50px;
+}
+
+#status{
+    margin: 0 auto;
+    width: 216px;
+    height: 50px;
+    color: #27adf1;
+    margin-top: 4.25em;
+    display: block;
+    background: white;
+}
